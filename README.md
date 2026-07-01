@@ -1,6 +1,8 @@
 # Estoque API
 
-API simples para registro de estoque de uma loja, criada como trabalho de conclusão da disciplina. A aplicação utiliza armazenamento em memoria e possui testes automatizados executados por uma pipeline de integracao continua no GitHub Actions.
+API simples para registro de estoque de uma loja, criada como trabalho individual de conclusão da disciplina. Como nao havia um projeto reaproveitado de outra disciplina da pos-graduacao, foi desenvolvida uma API propria e objetiva para demonstrar os conceitos de integracao continua, testes automatizados e publicacao de relatorio na pipeline.
+
+A aplicação utiliza armazenamento em memoria e possui testes automatizados executados por uma pipeline de integracao continua no GitHub Actions.
 
 ## Tecnologias
 
@@ -92,7 +94,10 @@ Apos a execucao da pipeline no GitHub Actions:
 2. Abra uma execucao bem-sucedida do workflow `CI - Estoque API`.
 3. No final da pagina da execucao, localize a secao `Artifacts`.
 4. Baixe o artefato `mochawesome-report`.
-5. Abra o arquivo `index.html` para visualizar o relatorio dos testes.
+5. Extraia o arquivo `.zip` baixado.
+6. Abra o arquivo `index.html` para visualizar o relatorio dos testes.
+
+O relatorio e gerado com `inlineAssets=true`, deixando o HTML autocontido para facilitar a abertura apos o download do artefato.
 
 ## Conceitos aplicados
 
