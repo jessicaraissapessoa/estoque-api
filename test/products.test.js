@@ -7,7 +7,7 @@ describe('Estoque API', () => {
     resetInventory();
   });
 
-  it('deve retornar status de saude da API', async () => {
+  it('deve retornar status de saúde da API', async () => {
     const response = await request(app).get('/health');
 
     expect(response.status).to.equal(200);
@@ -35,40 +35,40 @@ describe('Estoque API', () => {
     });
   });
 
-  it('deve rejeitar cadastro com dados invalidos', async () => {
+  it('deve rejeitar cadastro com dados inválidos', async () => {
     const response = await request(app)
       .post('/products')
       .send({ name: 'A', quantity: -1, price: -10 });
 
     expect(response.status).to.equal(400);
-    expect(response.body.message).to.equal('Dados invalidos');
+    expect(response.body.message).to.equal('Dados inválidos');
     expect(response.body.errors).to.have.length(3);
   });
 
   it('deve buscar um produto pelo id', async () => {
     await request(app)
       .post('/products')
-      .send({ name: 'Calca Jeans', quantity: 5, price: 120 });
+      .send({ name: 'Calça Jeans', quantity: 5, price: 120 });
 
     const response = await request(app).get('/products/1');
 
     expect(response.status).to.equal(200);
-    expect(response.body.name).to.equal('Calca Jeans');
+    expect(response.body.name).to.equal('Calça Jeans');
   });
 
   it('deve atualizar um produto completo', async () => {
     await request(app)
       .post('/products')
-      .send({ name: 'Tenis', quantity: 8, price: 199.9 });
+      .send({ name: 'Tênis', quantity: 8, price: 199.9 });
 
     const response = await request(app)
       .put('/products/1')
-      .send({ name: 'Tenis Esportivo', quantity: 6, price: 249.9 });
+      .send({ name: 'Tênis Esportivo', quantity: 6, price: 249.9 });
 
     expect(response.status).to.equal(200);
     expect(response.body).to.include({
       id: 1,
-      name: 'Tenis Esportivo',
+      name: 'Tênis Esportivo',
       quantity: 6,
       price: 249.9,
     });
@@ -77,7 +77,7 @@ describe('Estoque API', () => {
   it('deve atualizar somente a quantidade em estoque', async () => {
     await request(app)
       .post('/products')
-      .send({ name: 'Bone', quantity: 12, price: 35 });
+      .send({ name: 'Boné', quantity: 12, price: 35 });
 
     const response = await request(app)
       .patch('/products/1/quantity')
@@ -103,6 +103,6 @@ describe('Estoque API', () => {
     const response = await request(app).get('/products/999');
 
     expect(response.status).to.equal(404);
-    expect(response.body.message).to.equal('Produto nao encontrado');
+    expect(response.body.message).to.equal('Produto não encontrado');
   });
 });

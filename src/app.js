@@ -27,13 +27,13 @@ function validateProductPayload(payload, partial = false) {
 
   if (!partial || Object.prototype.hasOwnProperty.call(payload, 'quantity')) {
     if (!Number.isInteger(payload.quantity) || payload.quantity < 0) {
-      errors.push('quantity deve ser um numero inteiro maior ou igual a zero');
+      errors.push('quantity deve ser um número inteiro maior ou igual a zero');
     }
   }
 
   if (!partial || Object.prototype.hasOwnProperty.call(payload, 'price')) {
     if (typeof payload.price !== 'number' || payload.price < 0) {
-      errors.push('price deve ser um numero maior ou igual a zero');
+      errors.push('price deve ser um número maior ou igual a zero');
     }
   }
 
@@ -52,7 +52,7 @@ app.get('/products/:id', (req, res) => {
   const product = findProduct(req.params.id);
 
   if (!product) {
-    return res.status(404).json({ message: 'Produto nao encontrado' });
+    return res.status(404).json({ message: 'Produto não encontrado' });
   }
 
   return res.status(200).json(product);
@@ -62,7 +62,7 @@ app.post('/products', (req, res) => {
   const errors = validateProductPayload(req.body);
 
   if (errors.length > 0) {
-    return res.status(400).json({ message: 'Dados invalidos', errors });
+    return res.status(400).json({ message: 'Dados inválidos', errors });
   }
 
   const product = {
@@ -82,13 +82,13 @@ app.put('/products/:id', (req, res) => {
   const product = findProduct(req.params.id);
 
   if (!product) {
-    return res.status(404).json({ message: 'Produto nao encontrado' });
+    return res.status(404).json({ message: 'Produto não encontrado' });
   }
 
   const errors = validateProductPayload(req.body);
 
   if (errors.length > 0) {
-    return res.status(400).json({ message: 'Dados invalidos', errors });
+    return res.status(400).json({ message: 'Dados inválidos', errors });
   }
 
   product.name = req.body.name.trim();
@@ -102,13 +102,13 @@ app.patch('/products/:id/quantity', (req, res) => {
   const product = findProduct(req.params.id);
 
   if (!product) {
-    return res.status(404).json({ message: 'Produto nao encontrado' });
+    return res.status(404).json({ message: 'Produto não encontrado' });
   }
 
   if (!Number.isInteger(req.body.quantity) || req.body.quantity < 0) {
     return res.status(400).json({
-      message: 'Dados invalidos',
-      errors: ['quantity deve ser um numero inteiro maior ou igual a zero'],
+      message: 'Dados inválidos',
+      errors: ['quantity deve ser um número inteiro maior ou igual a zero'],
     });
   }
 
@@ -121,7 +121,7 @@ app.delete('/products/:id', (req, res) => {
   const product = findProduct(req.params.id);
 
   if (!product) {
-    return res.status(404).json({ message: 'Produto nao encontrado' });
+    return res.status(404).json({ message: 'Produto não encontrado' });
   }
 
   products = products.filter((currentProduct) => currentProduct.id !== product.id);

@@ -1,8 +1,8 @@
 # Estoque API
 
-API simples para registro de estoque de uma loja, criada como trabalho individual de conclusão da disciplina. Como nao havia um projeto reaproveitado de outra disciplina da pos-graduacao, foi desenvolvida uma API propria e objetiva para demonstrar os conceitos de integracao continua, testes automatizados e publicacao de relatorio na pipeline.
+API simples para registro de estoque de uma loja, criada como trabalho individual de conclusão da disciplina Integração Contínua para Automação de Testes, da pós-graduação em Automação de Testes. Foi desenvolvida uma API própria e objetiva para demonstrar os conceitos de integração contínua, testes automatizados e publicação de relatório na pipeline.
 
-A aplicação utiliza armazenamento em memoria e possui testes automatizados executados por uma pipeline de integracao continua no GitHub Actions.
+A aplicação utiliza armazenamento em memória e possui testes automatizados executados por uma pipeline de integração contínua no GitHub Actions.
 
 ## Tecnologias
 
@@ -16,9 +16,9 @@ A aplicação utiliza armazenamento em memoria e possui testes automatizados exe
 
 ## Funcionalidades da API
 
-| Metodo | Rota | Descricao |
+| Método | Rota | Descrição |
 | --- | --- | --- |
-| GET | `/health` | Verifica se a API esta respondendo |
+| GET | `/health` | Verifica se a API está respondendo |
 | GET | `/products` | Lista todos os produtos |
 | GET | `/products/:id` | Busca um produto pelo id |
 | POST | `/products` | Cadastra um produto |
@@ -38,7 +38,7 @@ A aplicação utiliza armazenamento em memoria e possui testes automatizados exe
 
 ## Como executar localmente
 
-Instale as dependencias:
+Instale as dependências:
 
 ```bash
 npm install
@@ -50,7 +50,7 @@ Inicie a API:
 npm start
 ```
 
-A API ficara disponivel em:
+A API ficará disponível em:
 
 ```text
 http://localhost:3000
@@ -62,7 +62,7 @@ http://localhost:3000
 npm test
 ```
 
-O comando executa os testes automatizados com Mocha, Chai e Supertest. Ao final, o Mochawesome gera um relatorio em:
+O comando executa os testes automatizados com Mocha, Chai e Supertest. Ao final, o Mochawesome gera um relatório em:
 
 ```text
 mochawesome-report/index.html
@@ -70,7 +70,7 @@ mochawesome-report/index.html
 
 ## Pipeline de CI com GitHub Actions
 
-O arquivo da pipeline esta em:
+O arquivo da pipeline está em:
 
 ```text
 .github/workflows/ci.yml
@@ -78,48 +78,41 @@ O arquivo da pipeline esta em:
 
 A pipeline contempla os requisitos do trabalho:
 
-- Execucao automatica a cada `push` nas branches `main` e `master`.
-- Execucao manual pelo botao `Run workflow`, usando `workflow_dispatch`.
-- Execucao agendada de hora em hora, usando `schedule`.
-- Instalacao das dependencias com `npm ci`.
-- Execucao dos testes automatizados com `npm test`.
-- Geracao de relatorio de testes com Mochawesome.
-- Publicacao do relatorio como artefato da pipeline com `actions/upload-artifact`.
+- Execução automática a cada `push` nas branches `main` e `master`.
+- Execução manual pelo botão `Run workflow`, usando `workflow_dispatch`.
+- Execução agendada de hora em hora, usando `schedule`.
+- Instalação das dependências com `npm ci`.
+- Execução dos testes automatizados com `npm test`.
+- Geração de relatório de testes com Mochawesome.
+- Publicação do relatório como artefato da pipeline com `actions/upload-artifact`.
 
-## Relatorio de testes na pipeline
+## Relatório de testes na pipeline
 
-Apos a execucao da pipeline no GitHub Actions:
+Após a execução da pipeline no GitHub Actions:
 
-1. Acesse a aba `Actions` do repositorio.
-2. Abra uma execucao bem-sucedida do workflow `CI - Estoque API`.
-3. No final da pagina da execucao, localize a secao `Artifacts`.
+1. Acesse a aba `Actions` do repositório.
+2. Abra uma execução bem-sucedida do workflow `CI - Estoque API`.
+3. No final da página da execução, localize a seção `Artifacts`.
 4. Baixe o artefato `mochawesome-report`.
 5. Extraia o arquivo `.zip` baixado.
-6. Abra o arquivo `index.html` para visualizar o relatorio dos testes.
+6. Abra o arquivo `index.html` para visualizar o relatório dos testes.
 
-O relatorio e gerado com `inlineAssets=true`, deixando o HTML autocontido para facilitar a abertura apos o download do artefato.
+O relatório é gerado com `inlineAssets=true`, deixando o HTML autocontido para facilitar a abertura após o download do artefato.
 
 ## Conceitos aplicados
 
-### Integracao continua
+### Integração contínua
 
-Integracao continua e uma pratica em que alteracoes no codigo sao verificadas automaticamente por uma pipeline. Neste projeto, a cada envio de codigo para o GitHub, a pipeline instala as dependencias, executa os testes e publica o relatorio.
+Integração contínua é uma prática em que alterações no código são verificadas automaticamente por uma pipeline. Neste projeto, a cada envio de código para o GitHub, a pipeline instala as dependências, executa os testes e publica o relatório.
 
 ### Testes automatizados
 
-Os testes validam o comportamento da API sem depender de verificacao manual. O Supertest faz requisicoes HTTP diretamente na aplicacao Express, enquanto Chai valida os resultados esperados.
+Os testes validam o comportamento da API sem depender de verificação manual. O Supertest faz requisições HTTP diretamente na aplicação Express, enquanto Chai valida os resultados esperados.
 
-### Relatorio de execucao
+### Relatório de execução
 
-O Mochawesome transforma o resultado dos testes em um relatorio HTML e JSON. Esse relatorio e armazenado como artefato no GitHub Actions, servindo como evidencia da execucao.
+O Mochawesome transforma o resultado dos testes em um relatório HTML e JSON. Esse relatório é armazenado como artefato no GitHub Actions, servindo como evidência da execução.
 
-### Execucao manual e agendada
+### Execução manual e agendada
 
-A execucao manual permite rodar a pipeline sob demanda. A execucao agendada garante verificacoes periodicas mesmo quando nao ha novos commits.
-
-## Evidencia para entrega
-
-Para a entrega do trabalho, envie:
-
-- URL do repositorio GitHub.
-- Evidencia de uma execucao bem-sucedida na aba `Actions`, incluindo o workflow `CI - Estoque API` e o artefato `mochawesome-report`.
+A execução manual permite rodar a pipeline sob demanda. A execução agendada garante verificações periódicas mesmo quando não há novos commits.
