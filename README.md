@@ -80,7 +80,7 @@ A pipeline contempla os requisitos do trabalho:
 
 - Execução automática a cada `push` nas branches `main` e `master`.
 - Execução manual pelo botão `Run workflow`, usando `workflow_dispatch`.
-- Execução agendada de hora em hora, no minuto 43, usando `schedule`.
+- Execução agendada diariamente às 20:57 no horário de Fortaleza/Brasília, usando `schedule`.
 - Instalação das dependências com `npm ci`.
 - Execução dos testes automatizados com `npm test`.
 - Geração de relatório de testes com Mochawesome.
